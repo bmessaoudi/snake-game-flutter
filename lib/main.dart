@@ -151,47 +151,44 @@ class _HomePageState extends State<HomePage> {
                   direction = 'left';
                 }
               },
-              child: Container(
-                child: GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: numberOfSquares,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 20,
-                    ),
-                    itemBuilder: (BuildContext context, int index) {
-                      if (snakePosition.contains(index)) {
-                        return Center(
-                          child: Container(
-                            padding: const EdgeInsets.all(2),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(5),
-                              child: Container(
-                                color: Colors.white,
-                              ),
+              child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: numberOfSquares,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 20,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    if (snakePosition.contains(index)) {
+                      return Center(
+                        child: Container(
+                          padding: const EdgeInsets.all(2),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(5),
+                            child: Container(
+                              color: Colors.white,
                             ),
                           ),
-                        );
-                      }
-                      if (index == food) {
-                        return Container(
-                          padding: const EdgeInsets.all(2),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(5),
-                            child: Container(color: Colors.green),
-                          ),
-                        );
-                      } else {
-                        return Container(
-                          padding: const EdgeInsets.all(2),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(5),
-                            child: Container(color: Colors.grey[900]),
-                          ),
-                        );
-                      }
-                    }),
-              ),
+                        ),
+                      );
+                    }
+                    if (index == food) {
+                      return Container(
+                        padding: const EdgeInsets.all(2),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Container(color: Colors.green),
+                        ),
+                      );
+                    } else {
+                      return Container(
+                        padding: const EdgeInsets.all(2),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Container(color: Colors.grey[900]),
+                        ),
+                      );
+                    }
+                  }),
             ),
           ),
           Padding(
