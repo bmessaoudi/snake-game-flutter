@@ -27,7 +27,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   static List<int> snakePosition = [45, 65, 85, 105, 125];
-  int numberOfSquares = 760;
+  int numberOfSquares = 700;
   var direction = 'down';
   bool gameStarted = false;
   static var randomNumber = Random();
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
       gameStarted = true;
       direction = 'down';
       snakePosition = [45, 65, 85, 105, 125];
-      const duration = Duration(milliseconds: 100);
+      const duration = Duration(milliseconds: 300);
       Timer.periodic(duration, (timer) {
         updateSnake();
         if (gameOver()) {
@@ -58,15 +58,15 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       switch (direction) {
         case 'down':
-          if (snakePosition.last > 740) {
-            snakePosition.add(snakePosition.last + 20 - 760);
+          if (snakePosition.last > (numberOfSquares - 20)) {
+            snakePosition.add(snakePosition.last + 20 - numberOfSquares);
           } else {
             snakePosition.add(snakePosition.last + 20);
           }
           break;
         case 'up':
           if (snakePosition.last < 20) {
-            snakePosition.add(snakePosition.last - 20 + 760);
+            snakePosition.add(snakePosition.last - 20 + numberOfSquares);
           } else {
             snakePosition.add(snakePosition.last - 20);
           }
@@ -192,21 +192,27 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Padding(
-            padding:
-                const EdgeInsets.only(bottom: 20.0, left: 20.0, right: 20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                GestureDetector(
-                  onTap: startGame,
-                  child: const Text(
-                    "s t a r t",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                IconButton(
+                  padding: const EdgeInsets.only(bottom: 45.0),
+                  onPressed: () => {},
+                  icon: const Icon(
+                    Icons.settings,
+                    color: Colors.white,
+                    size: 50.0,
                   ),
                 ),
-                const Text(
-                  "@ b i l e l . m e s s a u d i",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                IconButton(
+                  padding: const EdgeInsets.only(bottom: 45.0),
+                  onPressed: startGame,
+                  icon: const Icon(
+                    Icons.play_arrow,
+                    color: Colors.white,
+                    size: 50.0,
+                  ),
                 ),
               ],
             ),
